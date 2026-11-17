@@ -1,0 +1,3 @@
+quote_date,expiry,spot,strike,option_type,market_price,historical_volatility,risk_free_rate,dividend_yield,volume
+2025-06-02,2025-06-26,24500,24500,CE,275,0.17,0.065,0.012,10000
+2025-06-02,2025-06-26,24500,24500,PE,255,0.17,0.065,0.012,10000

@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nifty50-optionlab"
+version = "1.0.0"
+description = "NIFTY 50 European option pricing, regime diagnostics, Monte Carlo and delta-hedging VaR"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{name = "Ashutosh Agarwal"}]
+license = {text = "MIT"}
+dependencies = [
+  "numpy>=1.24,<3",
+  "pandas>=2.0,<3",
+  "scipy>=1.10,<2",
+  "matplotlib>=3.7,<4",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4,<10", "ruff>=0.6"]
+
+[project.scripts]
+optionlab = "optionlab.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]

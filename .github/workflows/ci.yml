@@ -1,0 +1,28 @@
+name: Unit tests and reproducible demo
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.10', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - run: pip install -e '.[dev]'
+      - run: ruff check src tests
+      - run: pytest
+      - name: End-to-end synthetic smoke test
+        run: optionlab demo --n-paths 100000 --out results/ci-demo
+      - name: Validate produced artifacts
+        run: |
+          test -s results/ci-demo/summary.json
+          test -s results/ci-demo/figures/hedging_var.png
+          test -s results/ci-demo/figures/regime_bias.png
+          python -c 'import json; j=json.load(open("results/ci-demo/summary.json")); assert j["simulation"]["n_paths"] == 100000'

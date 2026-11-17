@@ -1,0 +1,71 @@
+{
+  "dataset": "SYNTHETIC DEMO - NOT NSE",
+  "note": "Synthetic results are illustrative only; never represent these as a real NSE backtest.",
+  "model": {
+    "volatility": "lagged 21-session realized volatility, annualized by sqrt(252)",
+    "maturity": "calendar days / 365",
+    "tree_steps": 201,
+    "error_sign": "market_price minus Black-Scholes price"
+  },
+  "pricing_metrics": {
+    "n_quotes": 700,
+    "mae": 25.235171471839692,
+    "rmse": 30.339249463620305,
+    "mean_bias_market_minus_model": 10.984840043830404,
+    "median_absolute_error": 23.164553079883262,
+    "mean_tree_abs_difference": 0.23777022560325142
+  },
+  "error_distribution_bootstrap": {
+    "observed_quotes": 700,
+    "bootstrap_draws": 100000,
+    "mean_error": 10.83888514799081,
+    "std_error_distribution": 28.337065654560988,
+    "p01_error": -52.858138408830825,
+    "median_error": 11.146322365363403,
+    "p99_error": 67.90747730046155
+  },
+  "hedge_snapshot": {
+    "quote_date": "2024-03-05",
+    "expiry": "2024-04-02",
+    "spot": 16013.663855658751,
+    "strike": 16000.0,
+    "historical_volatility": 0.3249268478469577,
+    "market_premium": 616.7495541517485,
+    "model_premium": 612.9143174455785,
+    "risk_free_rate": 0.065,
+    "dividend_yield": 0.012
+  },
+  "monte_carlo_pricing": {
+    "price": 613.676932188581,
+    "analytic_price": 612.9143174455785,
+    "standard_error": 2.15057321816655,
+    "ci95_lower": 609.4618086809745,
+    "ci95_upper": 617.8920556961874,
+    "n_paths": 100000,
+    "mc_error": 0.762614743002473
+  },
+  "hedge_var": {
+    "var99_unhedged": 378.83163398947755,
+    "var99_hedged": 72.43318272481861,
+    "es99_unhedged": 446.25377633537676,
+    "es99_hedged": 90.82868815579705,
+    "var_reduction_pct": 80.87984840071975,
+    "initial_delta": 0.5391964129214296,
+    "n_paths": 100000,
+    "horizon_days": 1,
+    "transaction_cost_bps": 1.0
+  },
+  "historical_hedge_backtest": {
+    "status": "unavailable",
+    "reason": "No repeated same-contract quotes within 1-4 calendar days",
+    "n_observed_pairs": 0
+  },
+  "simulation": {
+    "n_paths": 100000,
+    "random_seed": 42,
+    "risk_method": "GBM spot + correlated stochastic IV shocks, fixed initial BSM delta",
+    "underlying_unit": "index points per one unit of the index option",
+    "position": "short 1 European call; initial delta hedge via index exposure",
+    "headline_18_percent_resume_claim_verified": false
+  }
+}
